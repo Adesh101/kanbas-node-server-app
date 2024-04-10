@@ -13,15 +13,9 @@ import "dotenv/config";
 const CONNECTION_STRING =
   process.env.DB_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
 
-//mongoose.connect(CONNECTION_STRING);
-mongoose
-  .connect(CONNECTION_STRING)
-  .then(() => {
-    console.log("Database connected");
-    app.listen(process.env.PORT || 4000);
-  })
-  .catch((err) => console.error("Error connecting to database", err));
+console.log("PROCESS: ", process.env.DB_CONNECTION_STRING);
 
+mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(
   cors({
@@ -54,5 +48,3 @@ UserRoutes(app);
 Hello(app);
 Lab5(app);
 app.listen(process.env.PORT || 4000);
-
-//Idk about this comment
